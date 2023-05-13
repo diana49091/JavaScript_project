@@ -1,0 +1,795 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 20px;
+    color: rgb(77, 77, 77);
+    margin: 0;
+}
+* {
+    box-sizing: border-box;
+}
+.hideClass {
+    display: none !important;
+}
+.showClass {
+    display: block !important;
+}
+
+#total_container {
+    position: relative;
+    max-width: 1400px; 
+    background-color: #E4E4E4; 
+    min-height: 100vh;
+    margin: 0 auto;
+    padding: 35px 0 35px 0;
+}
+
+
+/*header*/
+#header_logo {
+    width: 170px;
+    height: 60px;
+    line-height: 60px;
+    background-color: #257985;
+    position: absolute;
+    left: 0px;    
+}
+#header_logo p {
+    font-family: 'Prompt', sans-serif;
+    font-weight: 600;
+    font-size: 23px;
+    color: white;
+    text-align: center;
+    margin: auto;
+}
+
+.desktop_menu{  
+    margin: 0 auto;
+    width: 63%;  
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.desktop_menu a{
+    display: inline-block;
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    text-align: center;
+    line-height: 60px;
+    width: 30%; 
+    height: 60px;     
+    background: linear-gradient(180.81deg, #5EA8A7 0.69%, #5EA8A7 239.15%);
+    box-shadow: 2px 2px 2px #B7B7B7;
+    border-radius: 5px;
+}
+.desktop_menu a:hover {   
+    box-shadow: 0 0 15px #257985 inset;
+}
+#active_elem, .button:hover  {
+    box-shadow: none;
+    background: linear-gradient(180.81deg, #FF4447 0.69%, rgba(255, 68, 71, 0.3) 239.15%);    
+}
+
+/*burger-menu*/
+.burger {
+    display: none;
+    position: absolute;
+    z-index: 50;
+    align-items: center;
+    justify-content: flex-end;
+    width: 50px;
+    height: 26px;
+    right: 7.5%;
+    top: 18px;
+}
+.burger span {
+    height: 3px;
+    width: 90%;
+    transform: scale(1);
+    background-coLor: #257985;
+}
+
+.burger::before, 
+.burger::after {
+    content: "";
+    position: absolute;
+    height: 3px;
+    width: 100%;
+    background-color: #257985;
+    transition: all 0.3s ease 0s;
+}
+.burger::before { 
+    top: 0; 
+}
+.burger::after {
+    bottom: 0;
+}
+
+.open {
+    display: flex !important;
+}
+
+
+
+
+/* Добавляем класс active для анимации иконки бургера */
+.burger.active span { 
+    transform: scale(0);
+}
+.burger.active::before {
+    top: 50%;
+    transform: rotate(-45deg) translate(0, -50%);
+}
+.burger.active::after {
+    bottom: 50%;
+    transform: rotate(45deg) translate(0, 50%);
+}
+
+
+/*content*/
+#content {
+    position: relative;
+    margin: 65px auto 0;
+    background-color: #D6D4D4;
+    width: 63%;
+    min-height: 80vh;  
+}
+
+.content_inner {
+    padding: 40px 100px;
+}
+
+#content h2 {
+    margin-top: 0px;
+    text-align: center;
+}
+
+
+
+
+/*Модальное окно регистрации*/
+#modal_registr, #modal_finall_result{
+    background-color: rgba(0,0,0,0.05);
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+.modalRegistrdWindow {
+    padding: 70px 90px;
+    background-color:  #F5F5F5;
+    width: 500px;   
+    left: 50%;
+    top: 50%;   
+    position: absolute;
+    transform: translate(-50%, -250%) translateZ(0);  
+    transition-duration: 1s;
+    transition-timing-function: ease-out;   
+    will-change: transform;
+}
+
+.modalRegistrdWindow input:not(.button){
+    border: none;
+    width: 325px;
+    background-color: #F5F5F5;
+    height: 50px;
+    border-bottom: 1px solid #838383;
+    font-size: 18px;
+}
+
+.modalRegistrdWindow input:focus:not(.button){
+    outline: none;
+    border: none;
+    color: black;
+    border-bottom: 2px solid black;
+}
+
+.modalRegistrdWindow  .button {
+    margin-top: 20px;
+}
+
+#cancel_registr {
+    font-size: 30px;
+    position: absolute;
+    right: 27px;
+    top: 20px;
+}
+
+.registr_error_text {
+    color: rgb(161, 12, 12);
+    font-size: 13px;
+    font-style: italic;
+    font-weight: 700;
+}
+#modal_finall_result h2 {
+    font-weight: 600;
+    font-size: 23px;
+    text-align: center;
+    margin-bottom: 40px;
+}
+#modal_finall_result #user_info {
+    font-weight: 300;
+    font-size: 23px;
+    color: #000000;
+    text-align: center;
+    margin: 0px auto;
+}
+#modal_finall_result #finall_score {
+    font-weight: 600;
+    font-size: 100px;
+    color: #000000;
+    text-align: center;
+    text-align: center;
+    margin: 0px auto;
+}
+
+
+
+/*Слайдер*/
+#slider_nav {
+    position: relative;
+}
+#slider {
+    position: relative;  
+    width: 100%;
+    min-height: 80vh;
+    overflow-x: hidden;
+}
+#slider_line {
+    position: relative;
+    display: flex;
+    justify-content: left;
+    align-items: stretch;
+    left: 0px;
+    transition: all ease-out .7s;
+    touch-action: none;
+    min-height: 80vh;
+}
+.slider_item {
+    min-height: 80vh;
+    background-color: #F6F6F6;
+    position: relative;
+    padding: 10px 30px;
+    overflow-y: scroll;
+}
+
+
+
+.slider_arrows {
+    position: absolute;
+    top: 50%;
+    font-size: 65px;
+    color: #B7B7B7;
+    text-align: center; 
+    border: none;   
+    background: none;
+}
+.slider_arrows:hover {
+    color: #257985;    
+}
+#slider_prev_but {
+    left: -10%;
+}
+#slider_next_but {
+    right: -10%;
+}
+#resultsBar  {
+    display: flex;
+    justify-content: space-between;
+    margin: -10px auto 20px;
+    position: absolute;
+    width: 100%;
+    top: -15px;
+}
+#resultsBar div {
+    display: inline-block;
+    width: 8%;
+    height: 12px;
+    background-color: #B7B7B7;
+    border-radius: 6px;
+}
+#resultsBar .activeBarElem {
+    box-shadow: 3px 3px 4px rgb(77 77 77);
+}
+
+#test_img {
+    width: 166px;
+    height: 164px;
+    background: url(image/2387894.png) no-repeat ;
+    background-size: cover;
+    margin: 0 auto;
+}
+
+#rules_img {
+    width: 156px;
+    height: 154px;
+    background: url(image/setting.png) no-repeat;
+    background-size: cover;
+    margin: 0 auto;
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+#results_img {
+    width: 335px;
+    height: 105px;
+    background: url(image/results.png) no-repeat;
+    background-size: cover;
+    margin: 70px auto 0px;
+    position: relative;
+    bottom: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.button {
+    background: #257985;
+    box-shadow: 2px 2px 2px #B7B7B7;
+    border-radius: 5px;
+    width: 256px;
+    height: 60px;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 151.68%;
+    color: white;
+    border: none;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.content_inner .button {
+    margin-bottom: 50px;
+}
+
+.elem_result {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    height: 30px;
+    margin: 10px auto;
+    background-color: #B7B7B7;
+    padding: 0px 20px;
+}
+
+.elem_result_score {
+    font-weight: 600;
+}
+
+#rules_text, #results_table {
+    margin-bottom: 170px;
+}
+
+.question_result {
+    margin: 0 auto;
+    
+}
+
+
+.question_result p {
+    font-weight: 600;
+    font-size: 40px;    
+    text-align: center;
+    margin: 0px;
+}
+.right_result {
+    color: #257985;
+}
+.erorr_result {
+    color: #FF8989;
+}
+
+.resultBar_right {
+    background-color: #5EA8A7 !important;
+}
+.resultBar_error {
+    background-color: #FF8989 !important
+}
+
+
+.question_number {
+    position: absolute;
+    top: 10px;
+    right: 30px;
+    margin: 10px 0px 0px 0px;
+    color: #7c7c7c;
+}
+
+.question_title {
+    margin: 10px 80px 0px 15px;
+    color: rgb(77, 77, 77);
+    font-size: 19px;
+}
+.question_body {
+    position: relative;
+}
+
+.form {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    flex-wrap: wrap;
+    margin: 20px auto;
+}
+.form div {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.question_body label {
+    display: inline-block;
+    border: 2px outset #b7b7b7;    
+    text-align: center;    
+    border-radius: 10px;
+    background-color: #E4E4E4;
+    margin: 10px;
+    padding: 10px 20px;
+}
+.question_body label:hover {
+    border: 2px outset #257985;
+    scale: 1.1;
+}
+.question_body label.disabled:hover {
+    border: 2px outset #b7b7b7;
+}
+.question_body input:checked + label {
+    background-color: #5EA8A7;
+    color: white;
+    box-shadow: 2px 2px 4px rgb(104 104 104);
+}
+
+
+.question_anim {
+    width: 500px;    
+    margin: 30px auto 50px;
+    border-radius: 10px;
+    display: flex;   
+    flex-direction: column; 
+}
+
+.question_anim form{
+    order: 2;
+    align-self: flex-start;
+}
+.question_anim svg, 
+.question_anim canvas{
+    order: 1;
+    align-self: center;
+}
+
+.question_anim canvas {
+    padding: 0px 10px 20px;
+}
+
+#question9 .question_anim canvas {
+    padding: 0px 10px 0px;
+}
+
+
+
+#question1 .question_anim {
+    background-color: white;    
+}
+#question2 .question_anim, 
+#question3 .question_anim,
+#question5 .question_anim, 
+#question6 .question_anim,
+#question9 .question_anim, 
+#question10 .question_anim  {
+    background-color: white;    
+}
+
+#question5 .question_anim, 
+#question10 .question_anim {
+    padding: 0px 10px 10px;
+}
+
+
+#question2 .question_anim form,
+#question3 .question_anim form,
+#question5 .question_anim form {
+    padding: 10px;
+    margin: 0px auto;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#question5 .question_anim form {
+    margin: 15px auto 0px;
+}
+
+#question9 .question_anim form,
+#question10 .question_anim form {
+    margin: 25px auto 0px;    
+    padding: 10px;  
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    align-items: center;
+}
+#question9 .question_anim form {
+    margin: 0px auto;
+}
+
+
+#question4 .question_anim {
+    height: 250px;
+    background: url("image/luna.jpg") no-repeat center;
+    background-size: cover;
+    box-shadow: 3px 3px 8px rgb(77 77 77);
+}
+
+.question_anim img {
+    width: 50%;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#question7 .question_anim img {
+    width: 70%;
+}
+#question8 .question_anim img {
+    width: 100%;
+}
+
+.question_anim form input {
+    display: none;
+}
+.question_anim .state_on {
+    color: #5EA8A7;
+}
+.question_anim .state_off {
+    color: #FF8989;
+}
+
+.question_anim input + label {
+    display: inline-block;
+    border: 2px outset #b7b7b7;
+    text-align: center;
+    border-radius: 5px;
+    background-color: #E4E4E4;
+    margin: 0 4px 0 0;
+    padding: 0 5px;
+    font-size: 13px;
+}
+.question_anim input:checked + label {
+    border-radius: 5px;
+    box-shadow: 2px 2px 4px rgb(104 104 104);
+    transform: scale(1.1);
+}
+
+.question_anim span {
+    font-size: 13px;
+}
+
+.question_anim svg,
+.question_anim canvas {
+    width: 100%;
+    height: auto;
+}
+
+label:hover {
+    cursor: pointer;
+}
+
+#question3 #body3 {
+    cursor: pointer;
+    transition-duration: 1s;
+    transition-timing-function: ease-in-out;
+    visibility: visible;
+    pointer-events: fill;    
+}
+
+#question3 svg,
+#question6 svg {
+    touch-action: none;
+}
+
+#question6 #lake {
+    opacity: 0.9;
+}
+
+#question6 #duck {
+    opacity: 0.85;
+    transition: all 0.3s ease-out;
+    cursor: pointer;
+}
+
+
+
+#question5_set div:first-child label {
+    width: 15px;
+    height: 15px;    
+}
+
+#value5_1 + label {
+    background-color: #8a2426;    
+}
+#value5_2 + label {
+    background-color: #25558b;    
+}
+#value5_3 + label {
+    background-color: #575151;    
+}
+
+
+
+
+
+
+/*adaptiv*/
+@media only all and (max-width: 1100px) {
+    
+    .content_inner {
+        padding: 20px 40px;
+    }
+
+    #header_logo {
+        width: 130px;
+    }
+    .modalRegistrdWindow {
+        padding: 50px 70px;
+        width: 440px;
+    }   
+    .modalRegistrdWindow input:not(.button) {
+        width: 300px;
+    }  
+    
+    .question_anim {
+        width: 400px;
+    } 
+    
+}
+
+
+/*mobile*/
+@media only all and (max-width: 850px) {
+    body {
+        font-size: 18px;
+    }
+    #total_container {
+        max-width: 700px;
+        padding: 10px 0px;
+    }
+    #content {
+        width: 90%;
+        margin: 80px auto 0px;
+    }
+    #content h2 {
+        font-size: 22px;
+    }
+    .content_inner {
+        padding: 10px 20px;
+    }
+
+    .content_inner p,
+    #rules_text, #results_table {       
+        font-size: 18px;
+    }
+
+    #header_logo {
+        line-height: 44px;
+        height: 41px;
+        width: 150px;
+        z-index: 55;
+    }
+
+    .desktop_menu {
+        display: none;
+        flex-direction: column;
+        justify-content: flex-start;
+        position: absolute;        
+        width: 100%;
+        top: 0; Left: 0; right: 0; 
+        z-index: 50;
+        padding: 100px 40px 40px;
+        background-color: #F5F5F5;
+        animation: burgerAnimation 0.6s;
+    }
+   
+    .desktop_menu a{
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 30px;
+        min-width: 237px;
+    }
+    
+    @keyframes burgerAnimation {
+        from {opacity: 0}
+        to {opacity: 1}
+    }
+
+    
+    #resultsBar div {
+        height: 11px;
+    }
+    
+    .burger {
+        display: flex;
+    }
+    .slider_item {
+        padding: 10px 10px;
+    }
+
+    .slider_arrows  {
+        display: none;
+    }  
+
+    .modalRegistrdWindow {
+        padding: 50px 35px;
+        width: 360px;
+    }   
+    .modalRegistrdWindow input:not(.button) {
+        width: 290px;
+    }
+
+    .button{
+        font-size: 18px;
+    }
+    .question_result .button {
+        width: 200px;
+    }    
+
+    .question_title {
+        margin: 10px 67px 10px 20px;
+        font-size: 14px;
+    }
+    .question_body label {
+        font-size: 14px;
+        height: auto;
+        line-height: 30px;
+        padding: 0px 10px;
+        margin: 5px 10px;
+    }  
+    .question_anim {
+        width: 300px;
+        margin: 10px auto 30px;
+    }  
+
+  
+    .question_anim img {
+        width: 70%;      
+    }
+
+    #question4 .question_anim {
+        height: 200px;
+    }
+
+    .question_anim input + label {
+        font-size: 10px;
+        margin: 0px;
+    }
+    .question_anim form{
+        order: 1;        
+    }
+    .question_anim svg, 
+    .question_anim canvas{
+        order: 2;       
+    }
+
+    #question5 .question_anim form {
+        margin: 0px auto 0px;
+    }
+    
+    #question9 .question_anim form {
+        margin: 0px auto;
+        padding: 5px 10px 0px;
+    }
+
+    #question10 .question_anim form {
+        margin: 0px auto 0px;    
+    }
+
+}
+
+
+
+
+

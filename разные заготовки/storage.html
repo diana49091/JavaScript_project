@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://fe.it-academy.by/JQ/jquery.js"></script>
+</head>
+<body>
+
+    <p id="rules">Цель тестирования - проверить уровень знаний и навыков по физике. В тесте 10 вопросов, максимально за тест можно получить 10 баллов. Результаты теста можно посмотреть во вкладке "Результаты". Запрещается пользоваться интернетом, обновлять страницу во время теста или закрывать страницу (результаты теста не будут сохранены), смотреть свои записи на бумажных носителях, смотреть в смартфон или планшет, пользоваться подсказками других людей. Разрешается пользоваться программой "калькулятор" на компьютере.</p>
+
+    <script>
+        "use strict"
+        const ajaxHandlerScript="https://fe.it-academy.by/AjaxStringStorage2.php";
+
+        //подгружаем данные о правилах на сервер:
+        /*
+        let rules = document.getElementById("rules").innerHTML;      
+        const stringName='PARF_TEST_RULES';         
+        let updatePassword;  
+
+        function storeInfo() {
+            updatePassword=Math.random();
+            $.ajax({
+                url : ajaxHandlerScript, type : 'POST', cache : false, dataType:'json',
+                data : { f : 'LOCKGET', n : stringName, p : updatePassword },
+                success : lockGetReady, error : errorHandler
+            })
+        }
+        function lockGetReady(callresult) {
+            if ( callresult.error!=undefined ) {
+                console.log(callresult.error);
+            } else {      
+                $.ajax({
+                    url : ajaxHandlerScript, type : 'POST', cache : false, dataType:'json',
+                    data : { f : 'UPDATE', n : stringName, v : JSON.stringify(rules), p : updatePassword},
+                    success : updateReady, error : errorHandler
+                });
+            };
+        }       
+        storeInfo()
+
+        function updateReady(callresult) {
+            if ( callresult.error!=undefined ) {
+                console.log(callresult.error);
+            }        
+        }
+        function restoreInfo() {
+            $.ajax({
+                url : ajaxHandlerScript, type : 'POST', cache : false, dataType:'json',
+                data : { f : 'READ', n : stringName },
+                success : readReady, error : errorHandler
+            });
+        }
+        function readReady(callresult) {
+            if ( callresult.error!=undefined ){
+                console.log(callresult.error);
+            } else {
+                console.log(JSON.parse(callresult.result));
+            }
+        }      
+        function errorHandler(jqXHR,statusStr,errorStr) {
+            console.log(statusStr+' '+errorStr);
+        }
+        restoreInfo();
+        */
+
+
+
+        //////////////////
+        //загружаем данные о результатах теста:
+
+        let testResults = [
+            {name: "Даниил", lastName: "Новик", score: 6},
+            {name: "Мария", lastName: "Иванова", score: 8},
+            {name: "Николай", lastName: "Ковш", score: 7},
+            {name: "Артем", lastName: "Шагалов", score: 4},
+        ];
+        
+        function saveResult() {
+            const stringResultName='PARF_TEST_RESULT'; 
+            $.ajax({
+                url : ajaxHandlerScript, type : 'POST', cache : false, dataType:'json',
+                data : { f : 'INSERT', n : stringResultName, v : JSON.stringify(testResults) },
+                success : saveResultReady, error : errorHandler1
+            })
+        }
+        function saveResultReady(callresult) {
+            if ( callresult.error!=undefined ) {
+                console.log(callresult.error);
+            } else {      
+                console.log("Данные о результатах сохранены: " + callresult.result )
+            };
+        } 
+        function errorHandler1 (jqXHR,statusStr,errorStr) {
+            console.log(statusStr+' '+errorStr);
+        }      
+        saveResult()
+
+           
+            
+            
+        
+        
+
+
+
+
+    
+
+ 
+
+
+
+    </script>
+    
+</body>
+</html>

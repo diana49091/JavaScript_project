@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style.css" rel="stylesheet">
+    <script src="https://fe.it-academy.by/JQ/jquery.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;1,300&family=Prompt:wght@600&display=swap" rel="stylesheet">
+    <title>Teslatest</title>
+</head>
+<body>
+    <div  id="total_container">
+        <header id="header">            
+            <div id="header_logo">
+                <div>
+                    <p>TeslaTest</p>
+                </div>
+            </div>            
+            <div class="desktop_menu">
+                <a href="test" onclick='switchToTestPage()' class="test"> Тест </a>
+                <a href="rules" onclick='switchToRulesPage()' class="rules">Правила</a>
+                <a href="results" onclick='switchToResultsPage()' class="results">Результаты</a>
+            </div>  
+            <div class="burger">
+                <span></span>
+            </div>
+        </header>            
+
+        <div id="content"></div> <!--div для отображения вариабельной части контента-->
+
+        <div id = "contetnt_storage" class="hideClass"> <!--Для хранения HTML-блоков (чтобы динамически не создавать их в JS-коде)-->
+            <div id="slider_nav">
+                <div id="slider">
+                    <div id="slider_line">
+                        <div class="slider_item" id = "question1"> 
+                            <p class="question_number">1/10</p>
+                            <p class="question_title"> 
+                                Вычислить период Т пружинного маятника, если жесткость его пружины k=8Н/м, 
+                                а масса его груза m = 0.5кг. &#960; = 3.14</p>                            
+                            <div class="question_body">
+                                <form name="question1" class="form">
+                                    <div><input type="radio" name="pendulum" value="11" id="value11"><label for="value11">1.57 сек</label><br></div>
+                                    <div><input type="radio" name="pendulum" value="12" id="value12"><label for="value12">2.18 сек</label><br></div>
+                                    <div><input type="radio" name="pendulum" value="13" id="value13"><label for="value13">1.34 сек</label><br></div>
+                                    <div><input type="radio" name="pendulum" value="13" id="value14"><label for="value14">1.80 сек</label><br></div>
+                                </form>
+                            </div>
+                            <div class="question_anim">
+                                <img src="image/mayatnik.gif">                              
+                            </div>  
+                            <div class="question_result">
+                                <button class="button" id="1button">Ответить</button>
+                            </div>
+                        </div>
+                        <div class="slider_item" id = "question2">
+                            <p class="question_number">2/10</p>
+                            <p class="question_title"> 
+                                Тело массой 2кг движется по окружности радиусом 20см с постоянной скоростью. Определите центростремительную силу, 
+                                действующую на тело, если скорость движения тела – 18км/ч.</p>
+                            <div class="question_body">
+                                <form name="question2" class="form">
+                                    <div><input type="radio" name="circularMotion" value="21" id="value21"><label for="value21">210 Н</label></div>
+                                    <div><input type="radio" name="circularMotion" value="22" id="value22"><label for="value22">250 Н</label></div>
+                                    <div><input type="radio" name="circularMotion" value="23" id="value23"><label for="value23">290 Н</label></div>
+                                    <div><input type="radio" name="circularMotion" value="23" id="value24"><label for="value24">310 Н</label></div>
+                                </form>
+                            </div>
+                            <div class="question_anim"> 
+                                <form name="question2_set" id="question2_set" >
+                                    <div>
+                                        <span>Радиус:</span>
+                                        <input type="radio" name="radius_plane" value="80" id="value2_10"><label for="value2_10">10см</label>
+                                        <input type="radio" name="radius_plane" value="110" id="value2_20" checked><label for="value2_20">20см</label>  
+                                        <input type="radio" name="radius_plane" value="150" id="value2_30"><label for="value2_30">30см</label> 
+                                    </div>                                    
+                                    <div>
+                                        <input type="radio" name="state_2quest" value="on" id="value2_on"><label for="value2_on" class="state_on">&#10004;On</label>
+                                        <input type="radio" name="state_2quest" value="off" id="value2_off" checked><label for="value2_off" class="state_off">&#10008;Off</label>
+                                    </div>                                    
+                                </form>                             
+                                <svg id="svg_quest2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"></svg>
+                            </div>   
+                            <div class="question_result">
+                                <button class="button" id="2button">Ответить</button>
+                            </div>
+                        </div>
+                        <div class="slider_item" id = "question3">
+                            <p class="question_number">3/10</p>
+                            <p class="question_title">
+                                Брусок массой 5 килограмм скользит по горизонтальной поверхности. Сила трения скольжения равна 20 Н. Найдите силу трения, 
+                                если масса бруска уменьшится в два раза, а коэффициент трения останется неизменным.
+                            </p>                            
+                            <div class="question_body">
+                                <form name="question3" class="form">
+                                    <div><input type="radio" name="friction_force" value="31" id="value31"><label for="value31">20 Н</label><br></div>
+                                    <div><input type="radio" name="friction_force" value="32" id="value32"><label for="value32">40 Н</label><br></div>
+                                    <div><input type="radio" name="friction_force" value="33" id="value33"><label for="value33">5 Н</label><br></div>
+                                    <div><input type="radio" name="friction_force" value="34" id="value34"><label for="value34">10 Н</label><br></div>
+                                </form>
+                            </div>
+                            <div class="question_anim">
+                                <form name="question3_set" id="question3_set" >
+                                    <div>
+                                        <span>Масса:</span>
+                                        <input type="radio" name="body_size" value="70" id="value3_25"><label for="value3_25">2.5кг</label>
+                                        <input type="radio" name="body_size" value="100" id="value3_50" checked><label for="value3_50">5кг</label>  
+                                    </div>                                
+                                </form>                            
+                                <svg id="svg_quest3"  xmlns="http://www.w3.org/2000/svg">
+                                    <defs>
+                                        <linearGradient id="LG1" x1 = 20% y1="20%" x2 = "50%" y2 = "40%" spreadMethod = reflect >
+                                            <stop offset="0%" stop-color="#135c2c70"/>
+                                            <stop offset="100%" stop-color="#135c2a95"/>
+                                        </linearGradient>
+                                        <linearGradient id="LG2" x1 = "0%" y1="0%" x2 = "70%" y2 = "100%" spreadMethod = reflect >
+                                            <stop offset="0%" stop-color="#afafaf"/>
+                                            <stop offset="100%" stop-color="#525252"/>
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+                            </div>  
+                            <div class="question_result">
+                                <button class="button" id="3button">Ответить</button>
+                            </div>
+                        </div>
+                        <div class="slider_item" id = "question4">
+                            <p class="question_number">4/10</p>
+                            <p class="question_title"> 
+                                Ускорение свободного падения на земле равно 9.8м/с<sup>2</sup>, а на луне - 1.62м/с<sup>2</sup>. 
+                                Во сколько раз девушка массой 60 кг будет весить на земле больше?
+                            </p>                            
+                            <div class="question_body">
+                                <form name="question4" class="form">
+                                    <div><input type="radio" name="girl_moon" value="41" id="value41"><label for="value41">В 7 раз</label><br></div>
+                                    <div><input type="radio" name="girl_moon" value="42" id="value42"><label for="value42">В 25 раз</label><br></div>
+                                    <div><input type="radio" name="girl_moon" value="43" id="value43"><label for="value43">В 6 раз</label><br></div>
+                                    <div><input type="radio" name="girl_moon" value="44" id="value44"><label for="value44">В 3 раза</label><br></div>
+                                </form>
+                            </div>
+                            <div class="question_anim"></div>  
+                            <div class="question_result">
+                                <button class="button" id="4button">Ответить</button>
+                            </div>
+                        </div>
+                        <div class="slider_item" id = "question5">
+                            <p class="question_number">5/10</p>
+                            <p class="question_title">
+                                Рассчитайте среднюю скорость машины, если первые 20м пути она проехала за 5 сек, следующие 20м - за 3 сек, и потом за 2 сек проехала еще 20м.
+                            </p>                            
+                            <div class="question_body">
+                                <form name="question5" class="form">
+                                    <div><input type="radio" name="one_car" value="51" id="value51"><label for="value51">8.4 м/c</label><br></div>
+                                    <div><input type="radio" name="one_car" value="52" id="value52"><label for="value52">4.8 м/c</label><br></div>
+                                    <div><input type="radio" name="one_car" value="53" id="value53"><label for="value53">10 м/c</label><br></div>
+                                    <div><input type="radio" name="one_car" value="54" id="value54"><label for="value54">6 м/c</label><br></div>
+                                </form>
+                            </div>
+                            <div class="question_anim">
+                                <form name="question5_set" id="question5_set" >
+                                    <div>
+                                        <span>Цвет авто:</span>
+                                        <input type="radio" name="car_color" value="1" id="value5_1"><label for="value5_1"></label>
+                                        <input type="radio" name="car_color" value="2" id="value5_2" checked><label for="value5_2"></label>  
+                                        <input type="radio" name="car_color" value="3" id="value5_3"><label for="value5_3"></label> 
+                                    </div>                                    
+                                    <div>
+                                        <input type="radio" name="state_5quest" value="on" id="value5_on"><label for="value5_on" class="state_on">&#10004;On</label>
+                                        <input type="radio" name="state_5quest" value="off" id="value5_off" checked><label for="value5_off" class="state_off">&#10008;Off</label>
+                                    </div>                                    
+                                </form>      
+                                <canvas id = "CVS5Anim"></canvas>
+                            </div>  
+                            <div class="question_result">
+                                <button class="button" id="5button">Ответить</button>
+                            </div>
+                        </div>
+                        <div class="slider_item" id = "question6">
+                            <p class="question_number">6/10</p>
+                            <p class="question_title">
+                                В озере плавает уточка массой 3кг. Чему равна сила Архимеда, которая на нее действует? (g = 10Н/кг)
+                            </p>                            
+                            <div class="question_body">
+                                <form name="question6" class="form">
+                                    <div><input type="radio" name="floating_body" value="61" id="value61"><label for="value61">0 Н</label><br></div>
+                                    <div><input type="radio" name="floating_body" value="62" id="value62"><label for="value62">30 Н</label><br></div>
+                                    <div><input type="radio" name="floating_body" value="63" id="value63"><label for="value63">15 Н</label><br></div>
+                                    <div><input type="radio" name="floating_body" value="64" id="value64"><label for="value64">3 Н </label><br></div>
+                                </form>
+                            </div>
+                            <div class="question_anim">
+                                <svg id="svg_quest6" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <defs>
+                                        <linearGradient id="LG3" x1 = '0%' y1="0%" x2 = "0%" y2 = "40%" spreadMethod = reflect >
+                                            <stop offset="0%" stop-color="#2988beb8"/>
+                                            <stop offset="100%" stop-color="#256285b8"/>
+                                        </linearGradient>                                       
+                                    </defs>
+                                </svg>                                
+                            </div> 
+                            <div class="question_result">
+                                <button class="button" id="6button">Ответить</button>
+                            </div>
+                        </div>                        
+                        <div class="slider_item" id = "question7">
+                            <p class="question_number">7/10</p>
+                            <p class="question_title">Сколько нейтронов содержится в ядре урана <sup>238</sup><sub>92</sub>U?</p>                            
+                            <div class="question_body">
+                                <form name="question7" class="form">
+                                    <div><input type="radio" name="atom" value="71" id="value71"><label for="value71">238</label><br></div>
+                                    <div><input type="radio" name="atom" value="72" id="value72"><label for="value72">146</label><br></div>
+                                    <div><input type="radio" name="atom" value="73" id="value73"><label for="value73">92</label><br></div>
+                                    <div><input type="radio" name="atom" value="74" id="value74"><label for="value74">330</label><br></div>
+                                </form>
+                            </div>
+                            <div class="question_anim">
+                                <img src="image/atom.gif">
+                            </div>
+                            <div class="question_result">
+                                <button class="button" id="7button">Ответить</button>
+                            </div>
+                        </div>
+                        <div class="slider_item" id = "question8"> 
+                            <p class="question_number">8/10</p>
+                            <p class="question_title">
+                                Какое количество теплоты Q потребуется для нагрева воды, массой m=0.2кг, от температуры t<sub>1</sub>=0&#8451; до температуры 
+                                t<sub>2</sub>=100&#8451;? Удельная теплоемкость воды c=4200 Дж / кг*&#8451;                            
+                            </p>                            
+                            <div class="question_body">
+                                <form name="question8" class="form">
+                                    <div><input type="radio" name="heat_liquid" value="81" id="value81"><label for="value81">50 кДж</label><br></div>
+                                    <div><input type="radio" name="heat_liquid" value="82" id="value82"><label for="value82">84 кДж</label><br></div>
+                                    <div><input type="radio" name="heat_liquid" value="83" id="value83"><label for="value83">100 кДж</label><br></div>
+                                    <div><input type="radio" name="heat_liquid" value="84" id="value84"><label for="value84">20 кДж</label><br></div>
+                                </form>
+                            </div>
+                            <div class="question_anim">
+                                <img src="image/kolba.gif">
+                            </div>
+                            <div class="question_result">
+                                <button class="button" id="8button">Ответить</button>
+                            </div>
+                        </div>
+                        <div class="slider_item" id = "question9">
+                            <p class="question_number">9/10</p>
+                            <p class="question_title">
+                                Найдите общее сопротивление в цепи из 2 параллельно соединенных участков с сопротивлением 12Ом и 8Ом соответственно.
+                            </p>
+                            
+                            <div class="question_body">
+                                <form name="question9" class="form">
+                                    <div><input type="radio" name="parallel_circuit" value="91" id="value91"><label for="value91">4.8 Ом</label><br></div>
+                                    <div><input type="radio" name="parallel_circuit" value="92" id="value92"><label for="value92">2.8 Ом</label><br></div>
+                                    <div><input type="radio" name="parallel_circuit" value="93" id="value93"><label for="value93">4 Ом</label><br></div>
+                                    <div><input type="radio" name="parallel_circuit" value="94" id="value94"><label for="value94">2.6 Ом</label><br></div>
+                                </form>
+                            </div>
+                            <div class="question_anim">
+                                <form name="question9_set" id="question9_set" >                                                                      
+                                    <div>
+                                        <input type="radio" name="state_9quest" value="on" id="value9_on"><label for="value9_on" class="state_on">&#10004;On</label>
+                                        <input type="radio" name="state_9quest" value="off" id="value9_off" checked><label for="value9_off" class="state_off">&#10008;Off</label>
+                                    </div>                                    
+                                </form>     
+                                <canvas id = "CVS9Anim"></canvas>
+                            </div>
+                            <div class="question_result">
+                                <button class="button" id="9button">Ответить</button>
+                            </div>
+                        </div>
+
+
+                        <div class="slider_item" id = "question10">
+                            <p class="question_number">10/10</p>
+                            <p class="question_title">
+                                Два автомобиля выехали одновременно из двух населённых пунктов и встретились через  5 часов. 
+                                Первый автомобиль ехал со скоростью  30м/с, а второй — со скоростью  20м/с. 
+                                На каком расстоянии друг от друга находятся населённые пункты?
+                            </p>                            
+                            <div class="question_body">
+                                <div class="question_body">
+                                    <form name="question10" class="form">
+                                        <div><input type="radio" name="two_cars" value="101" id="value101"><label for="value101">750 км</label><br></div>
+                                        <div><input type="radio" name="two_cars" value="102" id="value102"><label for="value102">860 км</label><br></div>
+                                        <div><input type="radio" name="two_cars" value="103" id="value103"><label for="value103">900 км</label><br></div>
+                                        <div><input type="radio" name="two_cars" value="104" id="value104"><label for="value104">950 км</label><br></div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="question_anim">
+                                <form name="question10_set" id="question10_set" >                                                                      
+                                    <div>
+                                        <input type="radio" name="state_10quest" value="on" id="value10_on"><label for="value10_on" class="state_on">&#10004;On</label>
+                                        <input type="radio" name="state_10quest" value="off" id="value10_off" checked><label for="value10_off" class="state_off">&#10008;Off</label>
+                                    </div>                                    
+                                </form>     
+                                <canvas id = "CVS10Anim"></canvas>
+                            </div>
+                            <div class="question_result">
+                                <button class="button" id="10button">Ответить</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button id="slider_prev_but" class="slider_arrows">&#60;</button>
+                <button id="slider_next_but" class="slider_arrows">&#62;</button>
+            </div>
+
+            <div id="modal_registr">
+                <div class='modalRegistrdWindow' onclick='modalWindowClick(event)'>
+                    <h2>Регистрация</h2>
+
+                    <div id="cancel_registr">&#10005;</div>
+
+                    <form method="POST"   target="_blank" name="regist_form" novalidate>                        
+                        <input type="text" name="firstName" placeholder="Введите Ваше имя!"><br> 
+                        <span id="firstnameError" class="registr_error_text"></span><br>                
+            
+                        <input type="text" name="lastName" placeholder="Введите Вашу фамилию!"><br> 
+                        <span id="lastNameError" class="registr_error_text"></span><br>
+                        
+                        <input type="button" name="button" class="button" value="Зарегистрироваться">                        
+                    </form>
+                </div>
+            </div>
+
+            <div id="modal_finall_result">
+                <div class='modalRegistrdWindow' onclick='modalWindowClick(event)'>
+                    <h2>Ваш результат!</h2>
+                    <p id="user_info"></p>
+                    <p id="finall_score"></p>                  
+                    <input type="button" name="button" class="button" id="but_finall_result" value="Спасибо!"> 
+                </div>
+            </div>
+
+            <div id="test_content">
+                <div class='content_inner'>
+                    <h2>Тест по физике</h2>
+                    <p> &#8196;&#8196;&#8196;Физика является самым сложным предметом в школе. Если школьник упустил главные моменты с 7 класса, 
+                        то в дальнейшем ему будет очень непросто вникнуть в данный предмет. Ведь физика состоит из сплошных формул, которые нужно 
+                        не только запомнить, но и понять. <br> 
+                        &#8196;&#8196;&#8196;Поэтому, так важно закреплять изученный материал лабораторными 
+                        работами. На уроках физики школьники проходят такие темы как: электродинамика, кинематика, жидкость и пар, термодинамика, 
+                        электростатика, механика, теплопередача и еще много всего интересного. <br>
+                        &#8196;&#8196;&#8196;Хорошо ли вы выучили школьную программу? Как хорошо вы ориентируетесь в этом предмете? Проверьте себя, 
+                        с помощью этого теста по физике!
+                    </p>
+                    <div id='test_img'></div>
+                    <input type=button value='Пройти тест' id='start' class='button' onclick='testPusk()'>
+                </div>
+            </div>
+
+            <div id="rules_content">
+                <div class='content_inner'>
+                    <h2>Правила тестирования:</h2>
+                    <p id="rules_text"></p>
+                    <div id='rules_img'></div>                    
+                </div>
+            </div>
+
+            <div id="results_content">
+                <div class='content_inner'>
+                    <h2>Результаты тестирования:</h2>
+                    <div id="rules_table"></div>
+                    <div id='results_img'></div>                    
+                </div>
+            </div>
+        </div>           
+    </div>
+    <script src="mainScript.js"></script>
+</body>
+</html>
